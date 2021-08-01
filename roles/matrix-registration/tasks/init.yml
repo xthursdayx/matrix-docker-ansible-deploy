@@ -35,14 +35,6 @@
           {# Generic configuration for use outside of our container setup #}
           proxy_pass http://127.0.0.1:8767/$1;
         {% endif %}
-
-          {#
-            Workaround matrix-registration serving the background image at /static
-            (see https://github.com/ZerataX/matrix-registration/issues/47)
-          #}
-          sub_filter_once off;
-          sub_filter_types text/css;
-          sub_filter "/static/" "{{ matrix_registration_public_endpoint }}/static/";
         }
 
   - name: Register matrix-registration proxying configuration with matrix-nginx-proxy

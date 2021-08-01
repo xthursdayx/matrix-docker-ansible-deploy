@@ -5,7 +5,7 @@
     validate_certs: "{{ matrix_registration_api_validate_certs }}"
     headers:
       Content-Type: application/json
-      Authorization: "SharedSecret {{ matrix_registration_admin_secret }}"
+      Authorization: "SharedSecret {{ matrix_registration_admin_api_shared_secret }}"
     method: GET
     body_format: json
   check_mode: no

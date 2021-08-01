@@ -1,12 +1,12 @@
 - name: Fail if playbook called incorrectly
   fail:
-    msg: "The `one_time` variable needs to be provided to this playbook, via --extra-vars"
-  when: "one_time is not defined or one_time not in ['yes', 'no']"
+    msg: "The `max_usage` variable needs to be provided to this playbook, via --extra-vars"
+  when: "max_usage is not defined or max_usage not in ['yes', 'no']"
 
 - name: Fail if playbook called incorrectly
   fail:
-    msg: "The `ex_date` variable (expiration date) needs to be provided to this playbook, via --extra-vars"
-  when: "ex_date is not defined or ex_date == '<date>'"
+    msg: "The `expiration_date` variable (expiration date) needs to be provided to this playbook, via --extra-vars"
+  when: "expiration_date is not defined or expiration_date == '<date>'"
 
 - name: Call matrix-registration token creation API
   uri:
@@ -15,13 +15,13 @@
     validate_certs: "{{ matrix_registration_api_validate_certs }}"
     headers:
       Content-Type: application/json
-      Authorization: "SharedSecret {{ matrix_registration_admin_secret }}"
+      Authorization: "SharedSecret {{ matrix_registration_admin_api_shared_secret }}"
     method: POST
     body_format: json
     body: |
       {
-        "one_time": {{ 'true' if one_time == 'yes' else 'false' }},
-        "ex_date": {{ ex_date|to_json }}
+        "max_usage": {{ 'true' if max_usage == 'yes' else 'false' }},
+        "expiration_date": {{ expiration_date|to_json }}
       }
   check_mode: no
   register: matrix_registration_api_result

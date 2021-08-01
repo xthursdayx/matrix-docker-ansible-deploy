@@ -1,8 +1,9 @@
 server_location: {{ matrix_registration_server_location|to_json }}
 server_name: {{ matrix_registration_server_name|to_json }}
-shared_secret: {{ matrix_registration_shared_secret|to_json }}
-admin_secret: {{ matrix_registration_admin_secret|to_json }}
-riot_instance: {{ matrix_registration_riot_instance|to_json }}
+registration_shared_secret: {{ matrix_registration_registration_shared_secret|to_json }}
+admin_api_shared_secret: {{ matrix_registration_admin_api_shared_secret|to_json }}
+client_redirect: {{ matrix_registration_client_redirect|to_json }}
+client_logo: 'static/images/element-logo.png' # use '{cwd}' for current working directory
 db: {{ matrix_registration_db|to_json }}
 host: '0.0.0.0'
 port: 5000
