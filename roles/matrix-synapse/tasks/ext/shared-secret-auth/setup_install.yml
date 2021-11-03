@@ -15,7 +15,7 @@
     group: "{{ matrix_user_groupname }}"
 
 - set_fact:
-    matrix_synapse_password_providers_enabled: true
+    matrix_synapse_modules_enabled: true
 
     matrix_synapse_container_extra_arguments: >
       {{ matrix_synapse_container_extra_arguments|default([]) }}
